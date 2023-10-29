@@ -7,7 +7,7 @@ if "counter" not in st.session_state:
     st.session_state["counter"] = 0
 
 #here are all the image file names
-images = ["aa.jpg", "bb.jpg"]
+images = ["images/" + str(i) + ".jpg" for i in range(1, 19)]
 
 def true_press():
     '''
@@ -54,13 +54,17 @@ def main():
     #change the button values when the list_index is changed
     #also each button will call a specific function when it's clicked
     if st.session_state.list_index == 0:
-        col1.button("1", on_click=true_press)
-        col2.button("2", on_click=false_press)
-        col3.button("3", on_click=false_press)
+        col1.button("10", on_click=false_press)
+        col2.button("13", on_click=false_press)
+        col3.button("12", on_click=true_press)
     elif st.session_state.list_index == 1:
-        col1.button("4", on_click=true_press)
+        col1.button("8", on_click=true_press)
         col2.button("5", on_click=false_press)
-        col3.button("6", on_click=false_press)
+        col3.button("3", on_click=false_press)
+    elif st.session_state.list_index == 2:
+        col1.button("9", on_click=false_press)
+        col2.button("6", on_click=true_press)
+        col3.button("5", on_click=false_press)
 
 main()
 
