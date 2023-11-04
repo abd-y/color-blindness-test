@@ -174,7 +174,11 @@ def main():
             col3.button("nothing", on_click=check_answer, args=("nothing",))
     else:
         if st.session_state.list_index == 14 and st.session_state.score > 12:
-            st.write("You're not color blind")
+            st.session_state.list_index = 13
+            display()
+            st.session_state.result = "You're not color blind"
+            st.write(st.session_state.result)
+            st.button("try again", on_click=reset)
         else:
             #continue the test to diagonose what type of color blind
             col1, col2, col3 = display()
