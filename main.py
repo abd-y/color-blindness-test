@@ -16,28 +16,6 @@ if "result" not in st.session_state:
 #here are all the image file names
 images = ["images/" + str(i) + ".jpg" for i in range(1, 19)]
 
-# def true_press():
-#     '''
-#     When the correct number is pressed this function will execute
-#     basically it changes the displayed image by this
-#     st.session_state["list_index"] += 1
-#     and it add 1 to the to the score which is st.session_state["score"]
-#     '''
-#     st.session_state["list_index"] += 1
-#     st.session_state["score"] += 1
-#     if st.session_state["list_index"] == len(images):
-#         st.session_state["list_index"] = 0
-
-# def false_press():
-#     '''
-#     When the wrong number is pressed this function will execute
-#     basically it changes the displayed image by this
-#     st.session_state["list_index"] += 1
-#     '''
-#     st.session_state["list_index"] += 1
-#     if st.session_state["list_index"] == len(images):
-#         st.session_state["list_index"] = 0
-
 def check_answer(answer):
     '''
     connect to prolog and put the answer to prolog to check 
@@ -120,10 +98,13 @@ def display():
             cl.image(images[len(images) - 1], width=250)
         print(st.session_state)
         st.write("Choose the number you see in the image above:")
-        #making columns for each button
+        #divide buttons into 3 columns
         return st.columns(3)
 
 def reset():
+    '''
+    reset screen and start again
+    '''
     st.session_state["list_index"] = 0
     st.session_state["score"] = 1
     st.session_state["p_score"] = 0
@@ -195,7 +176,7 @@ def main():
         if st.session_state.list_index == 14 and st.session_state.score > 12:
             st.write("You're not color blind")
         else:
-            #continue the test
+            #continue the test to diagonose what type of color blind
             col1, col2, col3 = display()
             if st.session_state.list_index == 14:
                 col1.button("26", on_click=check_color_blind_type, args=(26,))
