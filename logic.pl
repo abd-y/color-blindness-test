@@ -16,4 +16,11 @@ answer(img15, 26).
 answer(img16, 42).
 answer(img17, 35).
 answer(img18, 96).
-is_colorblind(answer(img15, 1)).
+protanopia(answer(img15, 6)).
+deuteranopia(answer(img15, 2)).
+protanopia(answer(img16, 2)).
+deuteranopia(answer(img16, 4)).
+protanopia(answer(img17, 5)).
+deuteranopia(answer(img17, 3)).
+protanopia(answer(img18, 6)).
+deuteranopia(answer(img18, 9)).
