@@ -8,7 +8,7 @@ to install these packages open command prompt or terminal and type this:
 pip install streamlit
 pip install git+https://github.com/yuce/pyswip@master#egg=pyswip
 ```
-to run the python file just type in command prompt or terminal this:
+to run the python file just type in command prompt or terminal these:
 ```
 streamlit run main.py
 ```
