@@ -13,3 +13,4 @@ to run the python file just type in command prompt or terminal these:
 streamlit run main.py
 ```
 Note: make sure you are in the same directory where the file exists.
+Note: make sure you installed prolog https://www.swi-prolog.org/download/stable
