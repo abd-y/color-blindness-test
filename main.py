@@ -40,7 +40,7 @@ def check_answer(answer):
             st.session_state.result = "You have Deuteranopia."
 
 def check_color_blind_type(answer):
-
+    #checking color blind type by querying the answer from prolog
     #connecting to prolog
     prolog = Prolog()
     prolog.consult("logic.pl")
@@ -90,14 +90,11 @@ def display():
         )
         #diplay an image in the page from the list "images"
         #the bellow statment is to make the image in the middle of the page
+        #section 3.2
         _, cl, _, _ = st.columns(4)
         if st.session_state["list_index"] < len(images): #18 plates.
             #stop going to the next image when the score is more than or equal 12
-            if st.session_state["list_index"] == 12 and st.session_state["score"] >= 12:
-                cl.image(images[11], width=250)
-            elif st.session_state["list_index"] == 13 and st.session_state["score"] >= 12:
-                cl.image(images[12], width=250)
-            elif st.session_state["list_index"] == 14 and st.session_state["score"] >= 12:
+            if st.session_state["list_index"] == 14 and st.session_state["score"] >= 12:
                 cl.image(images[13], width=250)
             else:
                 cl.image(images[st.session_state["list_index"]], width=250)#continue
@@ -109,27 +106,21 @@ def display():
         return st.columns(3)
 
 def reset():
-    '''
-    reset screen and start again
-    '''
+    #reset screen and start again
     st.session_state["list_index"] = 0
     st.session_state["score"] = 1
     st.session_state["p_score"] = 0
     st.session_state["d_score"] = 0
     st.session_state["result"] = ''
 
-
-
-
-
-
 def end(message):
     st.session_state.result = message
-    st.markdown(f'<p style="color: red; text-align: center; font-weight: bold; font-size: 24px;">{st.session_state.result}</p></div>', unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1, 2, 1])
-
+    st.markdown(f'''
+                <p style="color: red; font-weight: bold; font-size: 24px;">
+                {st.session_state.result}
+                </p>
+                ''', unsafe_allow_html=True)
     st.button("Try again", on_click=reset)
-
 
 def main():
     col1, col2, col3 = display()
@@ -183,18 +174,14 @@ def main():
         col1.button("7", on_click=check_answer, args=(7,))
         col2.button("2", on_click=check_answer, args=(2,))
         col3.button("9", on_click=check_answer, args=(9,))
-    elif st.session_state.list_index == 12 and st.session_state.score < 12:
+    elif st.session_state.list_index == 12:
         col1.button("5", on_click=check_answer, args=(5,))
         col2.button("2", on_click=check_answer, args=(2,))
         col3.button("nothing", on_click=check_answer, args=("nothing",))
-    elif st.session_state.list_index == 12 and st.session_state.score >= 12: #normal color vision.
-        end("You're not color blind.")
-    elif st.session_state.list_index == 13 and st.session_state.score < 12:
+    elif st.session_state.list_index == 13:
         col1.button("7", on_click=check_answer, args=(7,))
         col2.button("2", on_click=check_answer, args=(2,))
         col3.button("nothing", on_click=check_answer, args=("nothing",))
-    elif st.session_state.list_index == 13 and st.session_state.score >= 12:
-        end("You're not color blind.")
     elif st.session_state.list_index == 14 and st.session_state.score >= 12:
         end("You're not color blind.")
     #continue the test to diagonose what type of color blind if the score < 12
@@ -215,7 +202,6 @@ def main():
         col2.button("6", on_click=check_color_blind_type, args=(6,))
         col3.button("9", on_click=check_color_blind_type, args=(9,))
     elif st.session_state.list_index > 17:
-        st.markdown(f"<p style='color:red; text-align:center; font-weight:bold; font-size:24px;'>{st.session_state.result}</p>", unsafe_allow_html=True)
-        st.button("try again", on_click=reset)
+        end(st.session_state.result)
 
 main()
