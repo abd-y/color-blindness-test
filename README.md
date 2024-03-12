@@ -11,7 +11,7 @@ pip install streamlit
 ```
 pip install git+https://github.com/yuce/pyswip@master#egg=pyswip
 ```
-to run the python file just type in command prompt or terminal these:
+to run the python file just type in command prompt or terminal this:
 ```
 streamlit run main.py
 ```
