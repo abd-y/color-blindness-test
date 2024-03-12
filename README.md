@@ -1,5 +1,5 @@
 # color-blindness-test
-color blindness test is a web-based test for color blindness made in python and prolog
+color blindness test is a web-based made in python and prolog.
 ### Packages required to run this python code:
 - streamlit
 - pyswip
